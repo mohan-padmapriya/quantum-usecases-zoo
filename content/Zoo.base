@@ -1,0 +1,19 @@
+filters:
+  and:
+    - file.hasTag("usecase")
+views:
+  - type: cards
+    name: Card Wall
+    order:
+      - sector
+      - verdict
+      - confidence
+      - timeline
+  - type: table
+    name: Index
+    order:
+      - sector
+      - verdict
+      - confidence
+      - timeline
+      - scale
