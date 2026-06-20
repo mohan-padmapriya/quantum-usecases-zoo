@@ -12,13 +12,15 @@ A critically-sourced, anti-hype reference cataloguing quantum technology use cas
 ---
 
 ## Use Cases
+![[Zoo.base]]
 
-| Sector | Use Case | Scale | Verdict |
-|--------|----------|-------|---------|
-| Materials & Chemistry | [[FeMoco Nitrogen Fixation]] | Single cluster | Fault-tolerant era |
-| Materials & Chemistry | [[High-Tc Superconductors]] | Material composition | Fault-tolerant era |
-| Energy & Grid | [[Power Grid Load Balancing]] | Regional grid | Premature |
-| Logistics | [[Last-Mile Delivery Routing]] | Fleet of 500–5000 | Premature |
+
+| Sector                | Use Case                       | Scale                | Verdict            |
+| --------------------- | ------------------------------ | -------------------- | ------------------ |
+| Materials & Chemistry | [[FeMoco Nitrogen Fixation]]   | Single cluster       | Fault-tolerant era |
+| Materials & Chemistry | [[High-Tc Superconductors]]    | Material composition | Fault-tolerant era |
+| Energy & Grid         | [[Power Grid Load Balancing]]  | Regional grid        | Premature          |
+| Logistics             | [[Last-Mile Delivery Routing]] | Fleet of 500–5000    | Premature          |
 
 ---
 
