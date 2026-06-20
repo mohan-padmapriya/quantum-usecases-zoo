@@ -1,3 +1,90 @@
 @use "./variables.scss" as *;
 
 // put your custom CSS here!
+
+/* Quantum Use Case Zoo — custom typography & spacing */
+
+body {
+  font-family: "Work Sans", sans-serif;
+  letter-spacing: 0.01em;
+  line-height: 1.65;
+  background: #15131f;
+  color: #ece9f6;
+}
+
+h1 {
+  font-weight: 700;
+  font-size: 2.4rem;
+  letter-spacing: -0.02em;
+  margin: 1.2rem 0 0.6rem;
+  color: #f5f3ff;
+}
+
+h2 {
+  font-weight: 600;
+  font-size: 1.5rem;
+  letter-spacing: -0.01em;
+  margin: 1.8rem 0 0.8rem;
+  border-bottom: 1px solid #332e47;
+  padding-bottom: 0.5rem;
+}
+
+h3 {
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin: 1rem 0 0.4rem;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1.2rem 0;
+  font-size: 0.95rem;
+}
+
+table th {
+  background: #1d1a2b;
+  border-bottom: 2px solid #9d8df2;
+  padding: 0.6rem;
+  text-align: left;
+  font-weight: 600;
+}
+
+table td {
+  border-bottom: 1px solid #332e47;
+  padding: 0.5rem 0.6rem;
+}
+
+a {
+  color: #9d8df2;
+  text-decoration: none;
+  border-bottom: 1px dotted rgba(157, 141, 242, 0.4);
+  transition: border-color 0.15s;
+}
+
+a:hover {
+  border-bottom-color: #9d8df2;
+}
+
+code {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.88rem;
+  background: #1d1a2b;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  color: #b56fe0;
+}
+
+blockquote {
+  border-left: 3px solid #9d8df2;
+  padding-left: 1rem;
+  margin: 1rem 0;
+  color: #c9c3de;
+  font-style: italic;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #332e47;
+  margin: 2rem 0;
+}
