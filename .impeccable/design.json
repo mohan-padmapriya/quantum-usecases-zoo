@@ -1,0 +1,221 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-06-21T09:52:50Z",
+  "title": "Design System: Quantum Use Case Zoo",
+  "extensions": {
+    "colorMeta": {
+      "cinnabar-ink": {
+        "role": "primary",
+        "displayName": "Cinnabar Ink",
+        "canonical": "oklch(0.530 0.160 35) / dark-mode oklch(0.580 0.165 35)",
+        "tonalRamp": [
+          "#360000",
+          "#5e0000",
+          "#860500",
+          "#ae3819",
+          "#d85e40",
+          "#ff8465",
+          "#ffa484",
+          "#ffc5a4"
+        ]
+      },
+      "verdigris-moss": {
+        "role": "secondary",
+        "displayName": "Verdigris Moss",
+        "canonical": "oklch(0.500 0.095 122) / dark-mode oklch(0.620 0.100 122)",
+        "tonalRamp": [
+          "#060f00",
+          "#1f2c00",
+          "#3c4d00",
+          "#5d6f26",
+          "#7f934b",
+          "#a3b86f",
+          "#c3d98e",
+          "#e3faae"
+        ]
+      },
+      "sage-stamp": {
+        "role": "tertiary",
+        "displayName": "Sage Stamp",
+        "canonical": "oklch(0.620 0.100 122)",
+        "tonalRamp": [
+          "#060f00",
+          "#1f2c00",
+          "#3c4d00",
+          "#5d6f26",
+          "#7f934b",
+          "#a3b86f",
+          "#c3d98e",
+          "#e3faae"
+        ]
+      },
+      "amber-stamp": {
+        "role": "tertiary",
+        "displayName": "Amber Stamp",
+        "canonical": "oklch(0.620 0.150 65)",
+        "tonalRamp": [
+          "#2d0000",
+          "#520000",
+          "#772a00",
+          "#9e4e00",
+          "#c57200",
+          "#ee9733",
+          "#ffb858",
+          "#ffd87b"
+        ]
+      },
+      "neutral-stamp": {
+        "role": "tertiary",
+        "displayName": "Neutral Stamp",
+        "canonical": "#6b7280 (fixed, true neutral, not derived from the warm hue family)"
+      },
+      "parchment-bg": {
+        "role": "neutral",
+        "displayName": "Parchment",
+        "canonical": "oklch(0.970 0.012 75) / dark-mode oklch(0.160 0.016 50)",
+        "tonalRamp": [
+          "#0f0a05",
+          "#2b251e",
+          "#4a443c",
+          "#6b655d",
+          "#8f887f",
+          "#b4ada4",
+          "#d4cdc3",
+          "#f5ede4"
+        ]
+      },
+      "ink-deep": {
+        "role": "neutral",
+        "displayName": "Deep Ink",
+        "canonical": "oklch(0.220 0.020 50) / dark-mode oklch(0.950 0.014 75)"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Home page H1 only, Fraunces serif, kept deliberately small (1.9rem) so it doesn't compete with the tile grid."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "All running text, max ~42ch on the thesis paragraph."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Filter pills, verdict badges, metadata field labels — uppercase, small, JetBrains Mono or Work Sans."
+      }
+    },
+    "shadows": [
+      {
+        "name": "tile-hover-lift",
+        "value": "0 16px 32px rgba(0, 0, 0, 0.18)",
+        "purpose": "The only shadow in the system. Appears on use-case tile hover, paired with translateY(-6px). Reserved for the page's hero component."
+      }
+    ],
+    "motion": [
+      {
+        "name": "tile-hover",
+        "value": "transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease",
+        "purpose": "Tile lift on hover, with a slight springy overshoot — the system's one deliberate animated moment."
+      },
+      {
+        "name": "badge-stamp-tilt",
+        "value": "transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)",
+        "purpose": "Verdict badge tilts (rotate(-2deg) scale(1.06)) on tile hover, like a rubber stamp being pressed — a literal nod to the 'verdict stamp' metaphor."
+      },
+      {
+        "name": "pill-transition",
+        "value": "all 0.2s ease",
+        "purpose": "Filter pill hover/active state changes."
+      },
+      {
+        "name": "pill-press",
+        "value": "transform 0.2s ease, scale(0.96) on :active",
+        "purpose": "Tiny tactile feedback on filter pill click, not a hover effect."
+      }
+    ],
+    "breakpoints": [
+      { "name": "mobile", "value": "800px" },
+      { "name": "desktop", "value": "1200px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Use-Case Tile",
+      "kind": "card",
+      "refersTo": "tile",
+      "description": "The page's main feature. Solid Cinnabar Ink fill, white text, verdict badge top-left, lifts on hover.",
+      "html": "<a href=\"#\" class=\"ds-tile\"><span class=\"ds-tile-badge\">Sensing-led</span><h3 class=\"ds-tile-title\">FeMoco Nitrogen Fixation</h3><p class=\"ds-tile-meta\">Materials &amp; Chemistry · 10+ years</p></a>",
+      "css": ".ds-tile { display: flex; flex-direction: column; padding: 1.75rem; min-height: 210px; background: #b53e20; border-radius: 1rem; text-decoration: none; color: #fff; transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease; } .ds-tile:hover { transform: translateY(-6px); box-shadow: 0 16px 32px rgba(0,0,0,0.18); } .ds-tile-badge { align-self: flex-start; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.03em; padding: 0.25rem 0.6rem; border-radius: 0.35rem; margin-bottom: 1.25rem; background: #7c9048; color: #221812; transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); } .ds-tile:hover .ds-tile-badge { transform: rotate(-2deg) scale(1.06); } .ds-tile-title { margin: 0 0 0.5rem 0; font-size: 1.4rem; font-weight: 600; color: #fff; font-family: 'Fraunces', Georgia, serif; } .ds-tile-meta { margin: 0.15rem 0; font-size: 0.85rem; color: #fff; }"
+    },
+    {
+      "name": "Filter Pill (active)",
+      "kind": "chip",
+      "refersTo": "pill-active",
+      "description": "Toggle pill for sector/timeline/verdict filtering, active state.",
+      "html": "<button class=\"ds-pill ds-pill-active\">Materials &amp; Chemistry</button>",
+      "css": ".ds-pill { font-family: 'Work Sans', sans-serif; font-size: 0.78rem; padding: 0.25rem 0.7rem; border-radius: 999px; border: 1px solid #e3d9ce; background: #faf4ec; color: #574a42; cursor: pointer; transition: all 0.2s ease; } .ds-pill:hover { border-color: #b53e20; } .ds-pill-active { background: #b53e20; border-color: #b53e20; color: #faf4ec; }"
+    },
+    {
+      "name": "Verdict Badge (premature)",
+      "kind": "chip",
+      "refersTo": "badge-premature",
+      "description": "Fixed-color stamp badge, amber, dark-ink text — used on tiles and use-case note headers.",
+      "html": "<span class=\"ds-badge ds-badge-premature\">Premature</span>",
+      "css": ".ds-badge { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.03em; padding: 0.25rem 0.6rem; border-radius: 0.35rem; font-family: 'JetBrains Mono', monospace; } .ds-badge-premature { background: #c26f00; color: #221812; }"
+    },
+    {
+      "name": "Use-Case Header Box",
+      "kind": "card",
+      "refersTo": "usecase-header",
+      "description": "Header box on use-case note pages: title, metadata fields, verdict badge, left-border accent.",
+      "html": "<div class=\"ds-usecase-header\"><h1 class=\"ds-usecase-title\">FeMoco Nitrogen Fixation</h1><div class=\"ds-usecase-meta\"><span class=\"ds-usecase-field\"><span class=\"ds-usecase-label\">Sector</span>Materials &amp; Chemistry</span><span class=\"ds-badge ds-badge-ft\">FT-era only</span></div></div>",
+      "css": ".ds-usecase-header { border-left: 4px solid #b53e20; background: #e3d9ce; border-radius: 0.5rem; padding: 1.25rem 1.5rem; } .ds-usecase-title { margin: 0 0 0.75rem 0; font-size: 1.8rem; font-family: 'Fraunces', Georgia, serif; color: #221812; } .ds-usecase-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 1.25rem; } .ds-usecase-field { display: flex; flex-direction: column; font-size: 0.95rem; color: #574a42; } .ds-usecase-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.04em; color: #8b7d73; } .ds-badge-ft { margin-left: auto; background: #6b7280; color: #fff; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.03em; padding: 0.3rem 0.75rem; border-radius: 0.35rem; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Lab Notebook",
+    "overview": "A working scientist's notebook, not a glossy report. The surface is warm parchment, the ink is real ink, and the verdicts read like a researcher's own marginalia — stamped, dated, sourced. The personality lives in restraint and precision, not in gradients or motion: a calm, plain-spoken authority that's earned, with just enough warmth and idiosyncrasy that it reads as written by a sharp human scientist rather than generated by a template.\n\nThe system explicitly rejects glossy quantum-startup marketing (gradient/particle backgrounds, qubit-sphere animations, breathless \"quantum advantage\" claims) and generic SaaS landing pages (oversized heroes, stock illustration, gradient blobs, marketing-fluff copy) in equal measure. It also rejects the opposite failure mode — a flat, personality-free academic template — by keeping one bold, deliberate gesture: the verdict tiles, rendered as solid warm-ink color blocks that lift slightly on hover, the single moment of \"delight\" the system allows itself.",
+    "keyCharacteristics": [
+      "Warm, paper-toned neutrals carry the page; one saturated rust ink does the brand work",
+      "Flat by default; depth is earned only through interaction (hover), never decorative",
+      "Verdicts are color-coded like rubber stamps — fixed colors, not theme-reactive",
+      "Generous whitespace; the tile grid is the hero, everything else is deliberately compact"
+    ],
+    "rules": [
+      {
+        "name": "The Tinted Surface Rule",
+        "body": "The background is warm parchment, not pure white/black, because the mood is explicitly environmental — a notebook page, not a SaaS app shell.",
+        "section": "colors"
+      },
+      {
+        "name": "The Fixed Stamp Rule",
+        "body": "Verdict badge colors never change with light/dark mode. A verdict is a fact about the world, not a UI preference.",
+        "section": "colors"
+      },
+      {
+        "name": "The Quiet Headline Rule",
+        "body": "Display type never exceeds ~2rem on the home page. The headline's job is to get out of the way fast so the tile grid reads as the main feature.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat-Until-Touched Rule",
+        "body": "Every surface is flat at rest. Depth appears only as a direct response to hover on the tile component — never as ambient decoration elsewhere.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do keep the home page header compact (display type ≤ 2rem) — the tile grid is the main feature, not the headline.",
+      "Do use solid, opaque white text on use-case tiles. Translucent white drops below WCAG AA against the Cinnabar Ink fill.",
+      "Do keep verdict badge colors fixed across light/dark mode.",
+      "Do match badge text color to the specific fill: dark ink on Sage/Amber, white on Neutral Stamp.",
+      "Do leave every surface flat at rest; reserve shadow/lift for the tile hover state only."
+    ],
+    "donts": [
+      "Don't add gradient or particle backgrounds, qubit-sphere animations, or breathless \"quantum advantage\" copy.",
+      "Don't add oversized hero sections, stock illustration, gradient blobs, or marketing-fluff copy.",
+      "Don't crowd the landing page — cut or clearly divide any section that competes with the tile grid for attention.",
+      "Don't introduce a second accent hue for decoration — Cinnabar Ink carries the brand alone.",
+      "Don't apply resting shadows to cards, pills, or boxes."
+    ]
+  }
+}

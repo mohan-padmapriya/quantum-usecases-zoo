@@ -1,0 +1,51 @@
+@use "../../styles/variables.scss" as *;
+
+.usecase-header {
+  border-left: 4px solid var(--secondary);
+  background: var(--lightgray);
+  border-radius: 0.5rem;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.usecase-header-title {
+  margin: 0 0 0.75rem 0;
+  font-size: 1.8rem;
+}
+
+.usecase-header-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.usecase-header-field {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.95rem;
+  color: var(--darkgray);
+}
+
+.usecase-header-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--gray);
+}
+
+.usecase-header-verdict-badge {
+  margin-left: auto;
+  font-size: 0.75rem;
+  font-weight: $semiBoldWeight;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 0.3rem 0.75rem;
+  border-radius: 0.35rem;
+}
+
+@media all and ($mobile) {
+  .usecase-header-verdict-badge {
+    margin-left: 0;
+  }
+}

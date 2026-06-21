@@ -1,0 +1,247 @@
+@use "../../styles/variables.scss" as *;
+
+// The core frame puts a fixed $topSpacing margin on .page-header to clear
+// site chrome (title/search/breadcrumbs) that the home page doesn't render
+// (beforeBody/left/right are all cleared for this page type) — reset it here
+// so the home page doesn't get a double dose of top spacing.
+body[data-slug="index"] .page-header {
+  margin: 0;
+}
+
+.usecase-home {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem;
+}
+
+// Compact on purpose — the tiles are the main feature, so the header should
+// clear out of the way quickly rather than dominate the top of the page.
+.usecase-home-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+
+  h1 {
+    font-family: var(--headerFont);
+    font-weight: $boldWeight;
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem 0;
+    color: var(--dark);
+  }
+}
+
+.usecase-home-header-text {
+  min-width: 0;
+}
+
+// Sits next to the title instead of in the global sidebar toolbar, since the
+// home page clears left/right positions entirely (see HomePageType).
+.usecase-home-darkmode {
+  flex-shrink: 0;
+}
+
+.usecase-home-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 1.75rem;
+}
+
+.home-action-pill {
+  font-family: var(--bodyFont);
+  font-size: 0.85rem;
+  font-weight: $semiBoldWeight;
+  padding: 0.45rem 1rem;
+  border-radius: 999px;
+  border: 1px solid var(--lightgray);
+  background: var(--light);
+  color: var(--darkgray);
+  text-decoration: none;
+  transition: all 0.2s ease;
+
+  &:hover {
+    border-color: var(--secondary);
+    color: var(--secondary);
+  }
+}
+
+.usecase-home-thesis {
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--darkgray);
+  max-width: 42rem;
+}
+
+.usecase-filters {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 2rem;
+}
+
+.filter-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.filter-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--gray);
+  margin-right: 0.4rem;
+  min-width: 4.5rem;
+}
+
+.pill {
+  font-family: var(--bodyFont);
+  font-size: 0.78rem;
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid var(--lightgray);
+  background: var(--light);
+  color: var(--darkgray);
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    border-color: var(--secondary);
+  }
+
+  // A tiny press-down on click — tactile feedback, not decoration.
+  &:active {
+    transform: scale(0.96);
+  }
+
+  &.is-active {
+    background: var(--secondary);
+    border-color: var(--secondary);
+    color: var(--light);
+  }
+}
+
+// The tile grid is the main feature of the page — generous size and
+// whitespace so it reads as the hero, not a dense card index.
+.tile-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.75rem;
+}
+
+.tile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 1.75rem;
+  min-height: 210px;
+  background: var(--secondary);
+  border-radius: 1rem;
+  text-decoration: none;
+  color: #fff;
+  // A slight overshoot on lift, not a plain ease — the one "quietly playful"
+  // gesture allowed in the system (see DESIGN.md Elevation).
+  transition:
+    transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.18);
+  }
+
+  &.is-hidden {
+    display: none;
+  }
+}
+
+// Tilts like a rubber stamp being pressed — a small, literal nod to the
+// "verdict stamp" metaphor, reserved for hover only.
+.tile-badge {
+  align-self: flex-start;
+  font-size: 0.7rem;
+  font-weight: $semiBoldWeight;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 0.25rem 0.6rem;
+  border-radius: 0.35rem;
+  margin-bottom: 1.25rem;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.tile:hover .tile-badge {
+  transform: rotate(-2deg) scale(1.06);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tile,
+  .tile-badge,
+  .pill {
+    transition: none !important;
+  }
+
+  .pill:active {
+    transform: none;
+  }
+
+  .tile:hover {
+    transform: none;
+  }
+
+  .tile:hover .tile-badge {
+    transform: none;
+  }
+}
+
+.tile-title {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.4rem;
+  font-weight: $semiBoldWeight;
+  color: #fff;
+}
+
+// Solid white, not translucent — translucency would drop contrast below
+// WCAG AA against the tile fill (see DESIGN.md contrast notes).
+.tile-meta {
+  margin: 0.15rem 0;
+  font-size: 0.85rem;
+  color: #fff;
+}
+
+.usecase-empty {
+  color: var(--gray);
+  font-style: italic;
+}
+
+.usecase-home-extra {
+  margin-top: 4rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--lightgray);
+
+  h2 {
+    font-size: 1.6rem;
+  }
+}
+
+@media all and ($tablet) {
+  .tile-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media all and ($mobile) {
+  .usecase-home-header h1 {
+    font-size: 1.6rem;
+  }
+
+  .filter-label {
+    min-width: auto;
+  }
+
+  .tile-grid {
+    grid-template-columns: 1fr;
+  }
+}

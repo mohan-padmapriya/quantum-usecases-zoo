@@ -1,3 +1,5 @@
 export { match } from "./matchers"
 export { NotFoundPageType } from "./404"
+export { HomePageType } from "./home"
+export { UseCaseNotePageType } from "./usecaseNote"
 export { PageTypeDispatcher } from "./dispatcher"
