@@ -1,6 +1,2 @@
----
-title: Contribute
-description: How to contribute a use case, correction, or source to the Zoo.
----
+Contact padmapriya.mohan6@gmail.com
 
-...your text, links, etc...
