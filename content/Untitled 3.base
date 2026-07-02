@@ -1,0 +1,11 @@
+filters:
+  and:
+    - file.hasTag("correlatedDynamics")
+views:
+  - type: cards
+    name: Table
+    order:
+      - file.name
+      - Institutions
+    columnSize:
+      file.name: 391

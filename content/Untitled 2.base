@@ -1,0 +1,10 @@
+filters:
+  and:
+    - file.inFolder("References")
+    - file.tags.contains("femoco")
+views:
+  - type: cards
+    name: View
+    cardSize: 210
+    image: note.Image
+    imageAspectRatio: 1.05

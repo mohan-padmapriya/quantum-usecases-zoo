@@ -1,6 +1,6 @@
 # yaml-language-server: $schema=./quartz/plugins/quartz-plugins.schema.json
 configuration:
-  pageTitle: Quantum Use Case Zoo
+  pageTitle: Quantum Usecase Zoo
   pageTitleSuffix: ""
   enableSPA: true
   enablePopovers: true
@@ -161,6 +161,8 @@ plugins:
     enabled: true
   - source: github:quartz-community/explorer
     enabled: true
+    options:
+      title: "Explorer"
     layout:
       position: left
       priority: 50
@@ -301,8 +303,12 @@ layout:
     home:
       positions:
         beforeBody: []
-        left: []
         right: []
+      exclude:
+        - page-title
+        - explorer
+        - reader-mode
+        - spacer
     usecase-note:
       exclude:
         - article-title

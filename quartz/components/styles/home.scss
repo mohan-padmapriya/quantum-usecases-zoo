@@ -1,156 +1,165 @@
 @use "../../styles/variables.scss" as *;
 
-// The core frame puts a fixed $topSpacing margin on .page-header to clear
-// site chrome (title/search/breadcrumbs) that the home page doesn't render
-// (beforeBody/left/right are all cleared for this page type) — reset it here
-// so the home page doesn't get a double dose of top spacing.
 body[data-slug="index"] .page-header {
   margin: 0;
 }
 
-.usecase-home {
-  max-width: 1320px;
-  margin: 0 auto;
-  padding: 2.5rem 1.5rem 4rem;
+body[data-slug="index"] .sidebar {
+  padding-top: 0;
 }
 
-// Compact on purpose — the tiles are the main feature, so the header should
-// clear out of the way quickly rather than dominate the top of the page.
-.usecase-home-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-bottom: 1rem;
+.usecase-home {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem 4rem;
+}
 
-  h1 {
-    font-family: var(--headerFont);
-    font-weight: $boldWeight;
-    font-size: 1.9rem;
-    margin: 0 0 0.4rem 0;
+// ── Nav bar ──────────────────────────────────────────────────────────────────
+
+.home-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--lightgray);
+  margin-bottom: 3rem;
+}
+
+.home-nav-logo {
+  font-family: var(--monoFont);
+  font-weight: 500;
+  font-size: 0.85rem;
+  color: var(--dark);
+  letter-spacing: 0;
+}
+
+.home-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.home-nav-link {
+  font-family: var(--monoFont);
+  font-weight: 400;
+  font-size: 0.8rem;
+  color: var(--darkgray);
+  text-decoration: none;
+
+  &:hover {
     color: var(--dark);
   }
 }
 
-.usecase-home-header-text {
-  min-width: 0;
-}
-
-// Sits next to the title instead of in the global sidebar toolbar, since the
-// home page clears left/right positions entirely (see HomePageType).
+// Sits next to the nav links; inherits darkmode plugin's global script.
 .usecase-home-darkmode {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  color: var(--dark);
   flex-shrink: 0;
 }
 
-.usecase-home-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem;
-  margin-bottom: 1.75rem;
+// ── Page title ────────────────────────────────────────────────────────────────
+
+.usecase-home-title {
+  font-family: "Fraunces", serif;
+  font-weight: 700;
+  font-size: 2.4rem;
+  letter-spacing: -0.01em;
+  color: var(--dark);
+  margin: 2.5rem 0 0.75rem;
 }
 
-.home-action-pill {
-  font-family: var(--bodyFont);
-  font-size: 0.85rem;
-  font-weight: $semiBoldWeight;
-  padding: 0.45rem 1rem;
-  border-radius: 999px;
-  border: 1px solid var(--lightgray);
-  background: var(--light);
-  color: var(--darkgray);
-  text-decoration: none;
-  transition: all 0.2s ease;
-
-  &:hover {
-    border-color: var(--secondary);
-    color: var(--secondary);
-  }
-}
+// ── Tagline / description ─────────────────────────────────────────────────────
 
 .usecase-home-thesis {
+  font-family: var(--dmFont);
+  font-weight: 300;
   font-size: 0.95rem;
-  line-height: 1.55;
-  color: var(--darkgray);
-  max-width: 42rem;
+  line-height: 1.65;
+  color: var(--secondary);
+  max-width: 38rem;
+  margin: 0 0 2.5rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid var(--lightgray);
 }
+
+// ── Filters ───────────────────────────────────────────────────────────────────
 
 .usecase-filters {
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
-  margin-bottom: 2rem;
+  gap: 0.5rem;
+  margin-bottom: 2.5rem;
 }
 
 .filter-group {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  gap: 0.4rem;
+  align-items: baseline;
 }
 
 .filter-label {
-  font-size: 0.7rem;
+  font-family: var(--monoFont);
+  font-weight: 500;
+  font-size: 0.75rem;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.09em;
   color: var(--gray);
-  margin-right: 0.4rem;
-  min-width: 4.5rem;
+  min-width: 5.5rem;
 }
 
 .pill {
-  font-family: var(--bodyFont);
-  font-size: 0.78rem;
-  padding: 0.25rem 0.7rem;
-  border-radius: 999px;
-  border: 1px solid var(--lightgray);
-  background: var(--light);
+  font-family: var(--dmFont);
+  font-weight: 400;
+  font-size: 0.95rem;
+  padding: 0.25rem 0.7rem 0.15rem;
+  border: none;
+  border-bottom: 2px solid transparent;
+  background: transparent;
   color: var(--darkgray);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: color 0.15s ease, border-color 0.15s ease;
 
   &:hover {
-    border-color: var(--secondary);
-  }
-
-  // A tiny press-down on click — tactile feedback, not decoration.
-  &:active {
-    transform: scale(0.96);
+    color: var(--dark);
   }
 
   &.is-active {
-    background: var(--secondary);
-    border-color: var(--secondary);
-    color: var(--light);
+    color: var(--dark);
+    border-bottom-color: var(--dark);
   }
 }
 
-// The tile grid is the main feature of the page — generous size and
-// whitespace so it reads as the hero, not a dense card index.
+// ── Tile grid ─────────────────────────────────────────────────────────────────
+
 .tile-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1.75rem;
+  gap: 1.5rem;
 }
 
 .tile {
   position: relative;
   display: flex;
   flex-direction: column;
-  padding: 1.75rem;
-  min-height: 210px;
+  padding: 1.5rem;
+  min-height: 190px;
   background: var(--secondary);
-  border-radius: 1rem;
+  border-radius: 0.75rem;
   text-decoration: none;
   color: #fff;
-  // A slight overshoot on lift, not a plain ease — the one "quietly playful"
-  // gesture allowed in the system (see DESIGN.md Elevation).
   transition:
     transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
     box-shadow 0.3s ease;
 
   &:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.18);
+    transform: translateY(-5px);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.16);
   }
 
   &.is-hidden {
@@ -158,58 +167,41 @@ body[data-slug="index"] .page-header {
   }
 }
 
-// Tilts like a rubber stamp being pressed — a small, literal nod to the
-// "verdict stamp" metaphor, reserved for hover only.
 .tile-badge {
   align-self: flex-start;
-  font-size: 0.7rem;
-  font-weight: $semiBoldWeight;
+  font-family: var(--monoFont);
+  font-weight: 400;
+  font-size: 0.65rem;
   text-transform: uppercase;
-  letter-spacing: 0.03em;
-  padding: 0.25rem 0.6rem;
-  border-radius: 0.35rem;
-  margin-bottom: 1.25rem;
+  letter-spacing: 0.04em;
+  padding: 0.2rem 0.55rem;
+  border-radius: 0.25rem;
+  margin-bottom: 1rem;
   transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .tile:hover .tile-badge {
-  transform: rotate(-2deg) scale(1.06);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .tile,
-  .tile-badge,
-  .pill {
-    transition: none !important;
-  }
-
-  .pill:active {
-    transform: none;
-  }
-
-  .tile:hover {
-    transform: none;
-  }
-
-  .tile:hover .tile-badge {
-    transform: none;
-  }
+  transform: rotate(-2deg) scale(1.05);
 }
 
 .tile-title {
-  margin: 0 0 0.5rem 0;
-  font-size: 1.4rem;
-  font-weight: $semiBoldWeight;
+  margin: 0 0 0.4rem 0;
+  font-family: var(--dmFont);
+  font-weight: 400;
+  font-size: 1.15rem;
   color: #fff;
 }
 
-// Solid white, not translucent — translucency would drop contrast below
-// WCAG AA against the tile fill (see DESIGN.md contrast notes).
 .tile-meta {
-  margin: 0.15rem 0;
-  font-size: 0.85rem;
-  color: #fff;
+  margin: 0.1rem 0 0;
+  font-family: var(--monoFont);
+  font-weight: 400;
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.75);
 }
+
+// ── Misc ──────────────────────────────────────────────────────────────────────
 
 .usecase-empty {
   color: var(--gray);
@@ -222,9 +214,29 @@ body[data-slug="index"] .page-header {
   border-top: 1px solid var(--lightgray);
 
   h2 {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
   }
 }
+
+// ── Reduced motion ────────────────────────────────────────────────────────────
+
+@media (prefers-reduced-motion: reduce) {
+  .tile,
+  .tile-badge,
+  .pill {
+    transition: none !important;
+  }
+
+  .tile:hover {
+    transform: none;
+  }
+
+  .tile:hover .tile-badge {
+    transform: none;
+  }
+}
+
+// ── Responsive ────────────────────────────────────────────────────────────────
 
 @media all and ($tablet) {
   .tile-grid {
@@ -233,12 +245,17 @@ body[data-slug="index"] .page-header {
 }
 
 @media all and ($mobile) {
-  .usecase-home-header h1 {
-    font-size: 1.6rem;
+  .home-nav-logo {
+    font-size: 0.78rem;
+  }
+
+  .home-nav-links {
+    gap: 1.25rem;
   }
 
   .filter-label {
     min-width: auto;
+    margin-bottom: 0.25rem;
   }
 
   .tile-grid {

@@ -1,1 +1,62 @@
 @use "./variables.scss" as *;
+
+html {
+  font-size: 17px;
+}
+
+:root {
+  --monoFont: "IBM Plex Mono", monospace;
+  --dmFont: "DM Sans", sans-serif;
+  --bodyFont: "DM Sans", sans-serif;
+  --headerFont: "DM Sans", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.note-properties { display: none; }
+
+body[data-slug="About"] .content-meta,
+body[data-slug="Methodology"] .content-meta { display: none; }
+
+// Sidebar site title: keep Fraunces regardless of --headerFont override.
+.page-title {
+  font-family: "Fraunces", serif !important;
+}
+
+// Explorer sidebar: body font, truncate long titles to one line.
+.sidebar.left {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+.explorer-content ul li > a {
+  font-family: var(--bodyFont);
+  font-size: 1rem;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.folder-container div > a,
+.folder-container div > button span {
+  font-family: var(--bodyFont) !important;
+  font-size: 1rem;
+}
+
+button.desktop-explorer h2,
+button.mobile-explorer h2 {
+  font-family: var(--bodyFont);
+  font-size: 1rem;
+}
+
+// Footer
+footer {
+  font-family: var(--monoFont);
+  font-weight: 400;
+  font-size: 0.75rem;
+  letter-spacing: 0.01em;
+}
