@@ -2,7 +2,7 @@
 title: Real-time dynamics of correlated quantum materials
 sector: Science
 timeline: Fault-tolerant era
-Watch out for: "[[An upcoming classical baseline]]"
+Watch out for: "[[A better classical baseline]]"
 verdict: "[[Hardware-limited]]"
 tags:
   - usecase
@@ -31,4 +31,4 @@ There are no peer-reviewed, replicated demonstration that a specific, useful dyn
 We are also missing fault-tolerant resource estimates for 2D time-simulation problems, which is where quantum is believed to win against classical. 
 
 ## References
-![[Untitled 3.base]]
+![[real-time-dynamics.base]]

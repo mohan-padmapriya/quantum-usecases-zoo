@@ -7,9 +7,8 @@ views:
     order:
       - sector
       - verdict
-      - confidence
       - timeline
-      - file.basename
+    imageFit: contain
   - type: table
     name: Index
     order:
