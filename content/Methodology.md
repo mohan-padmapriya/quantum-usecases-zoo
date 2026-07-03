@@ -1,4 +1,4 @@
-Roughly, I use a three step process in evaluating each usecase for [[Quantum Advantage FAQ | quantum advantage]]. First one must establish the theoretical advantage. Then move onto practical advantage, which includes considerations of wall-clock time performance and error correction overhead. And then finally economic advantage, which includes considerations of costs and timelines. 
+Roughly, I use a 3-4 step process in evaluating each usecase for [[Quantum Advantage FAQ | quantum advantage]]. First, I start by looking at theoretical advantage, which typically requires looking at asymptotics . Then move onto practical advantage, which includes considerations of wall-clock time performance and error correction overhead. And then finally economic advantage, which includes considerations of costs and timelines. 
 
 ### Theoretical
 There is likely to be a theoretical quantum advantage if, at the core of the usecase, the problem -  

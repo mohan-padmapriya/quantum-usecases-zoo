@@ -3,6 +3,8 @@ import { htmlToJsx } from "@quartz-community/utils/jsx"
 import { Node } from "hast"
 import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import noteStyle from "./styles/usecaseNote.scss"
+import { resolveRelative } from "../util/path"
+import { getVerdictMeta, resolvePageSlug, wikiLinkLabel, wikiLinkTarget } from "./verdictMeta"
 
 interface UseCaseFrontmatter {
   cssclasses?: string[]
@@ -13,27 +15,54 @@ interface UseCaseFrontmatter {
   "Watch out for"?: string
 }
 
-// Parses "[[Page Name]]" or "[[Page Name|Display]]" into a link, or returns plain text.
-function WikiLink({ raw }: { raw: string }) {
-  const match = raw.match(/^\[\[([^\]|]+)(?:\|([^\]]+))?\]\]$/)
-  if (!match) return <>{raw}</>
-  const slug = match[1].trim().toLowerCase().replace(/\s+/g, "-")
-  const label = (match[2] ?? match[1]).trim()
-  return <a href={`/${slug}`}>{label}</a>
-}
-
-const UseCaseNoteBody: QuartzComponent = ({ fileData, tree }: QuartzComponentProps) => {
+const UseCaseNoteBody: QuartzComponent = ({ fileData, allFiles, tree }: QuartzComponentProps) => {
   const frontmatter = fileData.frontmatter as UseCaseFrontmatter | undefined
   const content = htmlToJsx(tree as Node)
   const classes = frontmatter?.cssclasses ?? []
   const classString = ["popover-hint", ...classes].join(" ")
   const watchOutFor = frontmatter?.["Watch out for"]
 
+  // Parses "[[Page Name]]" or "[[Page Name|Display]]" into a link resolved
+  // against real page slugs, or falls back to plain text.
+  const WikiLink = ({ raw }: { raw: string }) => {
+    const target = wikiLinkTarget(raw)
+    if (target === raw) return <>{raw}</>
+    const slug = resolvePageSlug(allFiles, target)
+    const label = wikiLinkLabel(raw)
+    if (!slug) return <>{label}</>
+    return <a href={resolveRelative(fileData.slug!, slug)}>{label}</a>
+  }
+
+  const VerdictBadge = ({ raw }: { raw: string }) => {
+    const meta = getVerdictMeta(raw)
+    const style = `background:${meta.color};color:${meta.textColor}`
+    const target = wikiLinkTarget(raw)
+    const slug = target !== raw ? resolvePageSlug(allFiles, target) : undefined
+    if (!slug) {
+      return (
+        <span class="usecase-verdict-badge" style={style}>
+          {meta.label}
+        </span>
+      )
+    }
+    return (
+      <a class="usecase-verdict-badge" href={resolveRelative(fileData.slug!, slug)} style={style}>
+        {meta.label}
+      </a>
+    )
+  }
+
   return (
     <article class={classString}>
       <div class="usecase-header">
         <h1 class="usecase-header-title">{frontmatter?.title ?? fileData.slug}</h1>
         <div class="usecase-header-meta">
+          {frontmatter?.verdict && (
+            <span class="usecase-header-field">
+              <span class="usecase-header-label">Verdict</span>
+              <VerdictBadge raw={frontmatter.verdict} />
+            </span>
+          )}
           {frontmatter?.sector && (
             <span class="usecase-header-field">
               <span class="usecase-header-label">Sector</span>
@@ -50,12 +79,6 @@ const UseCaseNoteBody: QuartzComponent = ({ fileData, tree }: QuartzComponentPro
             <span class="usecase-header-field">
               <span class="usecase-header-label">Watch out for</span>
               <WikiLink raw={watchOutFor} />
-            </span>
-          )}
-          {frontmatter?.verdict && (
-            <span class="usecase-header-field">
-              <span class="usecase-header-label">Verdict</span>
-              <WikiLink raw={frontmatter.verdict} />
             </span>
           )}
         </div>

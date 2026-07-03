@@ -6,39 +6,21 @@ import homeScript from "./scripts/home.inline.ts"
 // @ts-expect-error - subpath export not resolved under classic moduleResolution, but valid at runtime
 import { htmlToJsx } from "@quartz-community/utils/jsx"
 import { Node } from "hast"
+import {
+  VERDICT_ORDER,
+  getVerdictMeta,
+  normalizeVerdict,
+  resolvePageSlug,
+  wikiLinkLabel,
+  wikiLinkTarget,
+} from "./verdictMeta"
 
 interface HastParent {
   children?: unknown[]
 }
 
-interface VerdictMeta {
-  label: string
-  color: string
-  textColor: string
-}
-
-// Fixed badge colors (not theme-mode-aware) — each chosen so its paired
-// textColor clears WCAG AA contrast against that exact fill in both
-// light and dark page modes; see DESIGN.md for the full palette rationale.
-const VERDICT_META: Record<string, VerdictMeta> = {
-  "sensing-led": { label: "Sensing-led", color: "#7c9048", textColor: "#221812" },
-  premature: { label: "Premature", color: "#c26f00", textColor: "#221812" },
-  "ft-era": { label: "FT-era", color: "#6b7280", textColor: "#ffffff" },
-}
-
-function getVerdictMeta(verdict?: string): VerdictMeta {
-  if (!verdict) return { label: "Unverdicted", color: "#a8a29e", textColor: "#221812" }
-  return VERDICT_META[verdict] ?? { label: verdict, color: "#a8a29e", textColor: "#221812" }
-}
-
 function titleCase(value: string): string {
   return value.replace(/[-_]/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())
-}
-
-function wikiLinkLabel(raw: string): string {
-  const match = raw.match(/^\[\[([^\]|]+)(?:\|([^\]]+))?\]\]$/)
-  if (!match) return raw
-  return (match[2] ?? match[1]).trim()
 }
 
 function uniqueSorted(values: (string | undefined)[]): string[] {
@@ -61,13 +43,39 @@ const HomeBody: QuartzComponent = ({ fileData, allFiles, tree }: QuartzComponent
       sector: f.frontmatter?.sector as string | undefined,
       timeline: f.frontmatter?.timeline as string | undefined,
       verdict: f.frontmatter?.verdict as string | undefined,
+      verdictKey: normalizeVerdict(f.frontmatter?.verdict as string | undefined),
     }))
     .sort((a, b) => a.title.localeCompare(b.title))
+
+  // Canonical verdicts in editorial order first, then anything off-taxonomy.
+  const verdictKeys = [...new Set(usecases.map((u) => u.verdictKey).filter(Boolean))].sort(
+    (a, b) => {
+      const [ia, ib] = [VERDICT_ORDER.indexOf(a), VERDICT_ORDER.indexOf(b)]
+      if (ia !== -1 || ib !== -1) return (ia === -1 ? Infinity : ia) - (ib === -1 ? Infinity : ib)
+      return a.localeCompare(b)
+    },
+  )
+
+  const scoreboard = verdictKeys.map((key) => ({
+    key,
+    meta: getVerdictMeta(usecases.find((u) => u.verdictKey === key)?.verdict),
+    count: usecases.filter((u) => u.verdictKey === key).length,
+  }))
+
+  // "Start here" strip: wikilinks listed in index.md frontmatter, resolved
+  // against real pages so entries that don't exist are dropped at build time.
+  const startHereRaw = fileData.frontmatter?.startHere as string[] | undefined
+  const startHere = (Array.isArray(startHereRaw) ? startHereRaw : [])
+    .map((raw) => {
+      const slug = resolvePageSlug(allFiles, wikiLinkTarget(raw))
+      return slug ? { slug, label: wikiLinkLabel(raw) } : undefined
+    })
+    .filter((l): l is { slug: (typeof usecases)[number]["slug"]; label: string } => Boolean(l))
 
   const filterGroups: { key: string; label: string; values: string[] }[] = [
     { key: "sector", label: "Sector", values: uniqueSorted(usecases.map((u) => u.sector)) },
     { key: "timeline", label: "Timeline", values: uniqueSorted(usecases.map((u) => u.timeline)) },
-    { key: "verdict", label: "Verdict", values: uniqueSorted(usecases.map((u) => u.verdict)) },
+    { key: "verdict", label: "Verdict", values: verdictKeys },
   ]
 
   return (
@@ -95,6 +103,29 @@ const HomeBody: QuartzComponent = ({ fileData, allFiles, tree }: QuartzComponent
 
       {description && <p class="usecase-home-thesis">{description}</p>}
 
+      {usecases.length > 0 && (
+        <p class="usecase-scoreboard">
+          <span class="scoreboard-total">{usecases.length} use cases assessed</span>
+          {scoreboard.map(({ key, meta, count }) => (
+            <span class="scoreboard-item" data-verdict={key}>
+              <span class="scoreboard-dot" style={`background:${meta.color}`}></span>
+              {count} {meta.label.toLowerCase()}
+            </span>
+          ))}
+        </p>
+      )}
+
+      {startHere.length > 0 && (
+        <div class="usecase-start-here">
+          <span class="filter-label">Start here</span>
+          {startHere.map((link) => (
+            <a href={resolveRelative(fileData.slug!, link.slug)} class="start-here-link">
+              {link.label}
+            </a>
+          ))}
+        </div>
+      )}
+
       <div class="usecase-filters">
         {filterGroups.map(
           (group) =>
@@ -106,7 +137,9 @@ const HomeBody: QuartzComponent = ({ fileData, allFiles, tree }: QuartzComponent
                 </button>
                 {group.values.map((value) => (
                   <button class="pill" data-value={value}>
-                    {group.key === "verdict" ? wikiLinkLabel(getVerdictMeta(value).label) : titleCase(value)}
+                    {group.key === "verdict"
+                      ? (scoreboard.find((s) => s.key === value)?.meta.label ?? titleCase(value))
+                      : titleCase(value)}
                   </button>
                 ))}
               </div>
@@ -124,13 +157,13 @@ const HomeBody: QuartzComponent = ({ fileData, allFiles, tree }: QuartzComponent
               class="tile"
               data-sector={u.sector ?? ""}
               data-timeline={u.timeline ?? ""}
-              data-verdict={u.verdict ?? ""}
+              data-verdict={u.verdictKey}
             >
               <span
                 class="tile-badge"
                 style={`background:${verdictMeta.color};color:${verdictMeta.textColor}`}
               >
-                {wikiLinkLabel(verdictMeta.label)}
+                {verdictMeta.label}
               </span>
               <h3 class="tile-title">{u.title}</h3>
               {meta && <p class="tile-meta">{meta}</p>}

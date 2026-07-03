@@ -1,7 +1,6 @@
 @use "../../styles/variables.scss" as *;
 
 .usecase-header {
-  border-left: 4px solid var(--secondary);
   background: var(--lightgray);
   border-radius: 0.5rem;
   padding: 1.25rem 1.5rem;
@@ -37,6 +36,35 @@
   text-transform: uppercase;
   letter-spacing: 0.09em;
   color: var(--gray);
+}
+
+// Matches .tile-badge on the homepage so the verdict reads as one system.
+.usecase-verdict-badge {
+  align-self: flex-start;
+  font-family: var(--monoFont);
+  font-weight: 500;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.2rem 0.55rem;
+  border-radius: 0.25rem;
+  margin-top: 0.15rem;
+  text-decoration: none;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+a.usecase-verdict-badge:hover {
+  transform: rotate(-2deg) scale(1.05);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .usecase-verdict-badge {
+    transition: none !important;
+  }
+
+  a.usecase-verdict-badge:hover {
+    transform: none;
+  }
 }
 
 @media all and ($mobile) {

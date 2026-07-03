@@ -83,9 +83,82 @@ body[data-slug="index"] .sidebar {
   line-height: 1.65;
   color: var(--secondary);
   max-width: 38rem;
+  margin: 0 0 1.4rem;
+}
+
+// ── Scoreboard ────────────────────────────────────────────────────────────────
+// Doubles as the verdict color legend: dots match the tile badge fills.
+
+.usecase-scoreboard {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 1.5rem;
+  row-gap: 0.45rem;
+  font-family: var(--monoFont);
+  font-weight: 400;
+  font-size: 0.78rem;
+  letter-spacing: 0.01em;
+  color: var(--darkgray);
   margin: 0 0 2.5rem;
   padding-bottom: 2.5rem;
   border-bottom: 1px solid var(--lightgray);
+}
+
+.scoreboard-total {
+  font-weight: 500;
+  color: var(--dark);
+}
+
+.scoreboard-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  white-space: nowrap;
+}
+
+.scoreboard-dot {
+  width: 0.62em;
+  height: 0.62em;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+// ── Start here ────────────────────────────────────────────────────────────────
+
+.usecase-start-here {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  margin-bottom: 1rem;
+}
+
+.start-here-link {
+  font-family: var(--dmFont);
+  font-weight: 400;
+  font-size: 0.95rem;
+  padding: 0.25rem 0.7rem 0.15rem;
+  color: var(--dark);
+  text-decoration: underline;
+  text-decoration-color: var(--secondary);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.25em;
+
+  &::after {
+    content: "→";
+    display: inline-block;
+    margin-left: 0.35rem;
+    color: var(--secondary);
+    transition: transform 0.15s ease;
+  }
+
+  &:hover {
+    color: var(--secondary);
+
+    &::after {
+      transform: translateX(3px);
+    }
+  }
 }
 
 // ── Filters ───────────────────────────────────────────────────────────────────
@@ -177,6 +250,8 @@ body[data-slug="index"] .sidebar {
   padding: 0.2rem 0.55rem;
   border-radius: 0.25rem;
   margin-bottom: 1rem;
+  // Keeps mid-tone fills crisp against the teal tile, esp. in dark mode.
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.22);
   transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
@@ -223,8 +298,13 @@ body[data-slug="index"] .sidebar {
 @media (prefers-reduced-motion: reduce) {
   .tile,
   .tile-badge,
-  .pill {
+  .pill,
+  .start-here-link::after {
     transition: none !important;
+  }
+
+  .start-here-link:hover::after {
+    transform: none;
   }
 
   .tile:hover {
@@ -245,8 +325,16 @@ body[data-slug="index"] .sidebar {
 }
 
 @media all and ($mobile) {
+  // Logo + links don't fit side by side; stack them instead of colliding.
+  .home-nav {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
   .home-nav-logo {
     font-size: 0.78rem;
+    white-space: nowrap;
   }
 
   .home-nav-links {

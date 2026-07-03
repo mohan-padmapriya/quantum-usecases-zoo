@@ -10,9 +10,19 @@ tags:
 ---
 
 # What and why
-The primary job of CO2 capture sorbents and DAC materials is to remove carbon dioxide from the environment, with DAC materials addressing more diluted CO2 and CO2 capture sorbents being used for industrial point sources. Typically, point-source capture deals with CO2 concentrations of approximately 200,000 ppm (approximately 20%), whereas DAC materials operate in ambient air where the concentration is only 424 ppm (0.04%). 
+The primary job of CO2 capture sorbents and DAC materials is to remove carbon dioxide from the environment, with DAC materials addressing more diluted CO2 and CO2 capture sorbents being used for industrial point sources. For both concentrations, MOF (metal-organic frameworks) are the most promising candidate, since their cagelike structure might be precisely tuned to vary selectivity and capacity depending on where they must be deployed. The challenge is in finding MOF candidates that possess high CO2 selectivity and low regeneration energy. The idea is quantum computing might be used to identify good MOF candidates and understand their interaction with CO2, and also other atmospheric gases. 
 
-For both concentrations, MOF (metal-organic frameworks) are the most promising candidate, since their cagelike structure migth be precisely tuned to vary selectivity and capacity depending on where they must be deployed. The challenge is in finding MOF candidates that possess high CO2 selectivity and low regeneration energy required for viable DAC. 
+# [[Methodology|Four gates of quantum advantage]]
+## Theoretical quantum advantage
+
+
+## Practical quantum advantage
+
+
+## Economic quantum advantage
+
+
+## Deployment/ecosystem advantage
 
 ### What 
 - reducing GHG by capturing them
