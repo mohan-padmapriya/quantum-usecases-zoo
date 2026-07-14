@@ -7,6 +7,7 @@ import Flex from "./Flex"
 import ConditionalRender from "./ConditionalRender"
 import HomeBody from "./HomeBody"
 import UseCaseNoteBody from "./UseCaseNoteBody"
+import AboutBody from "./AboutBody"
 
 export { componentRegistry, defineComponent } from "./registry"
 export { External } from "./external"
@@ -23,4 +24,5 @@ export {
   ConditionalRender,
   HomeBody,
   UseCaseNoteBody,
+  AboutBody,
 }

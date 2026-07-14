@@ -39,11 +39,14 @@
 }
 
 // Matches .tile-badge on the homepage so the verdict reads as one system.
-.usecase-verdict-badge {
+// Scoped under .usecase-header to out-rank a.internal's padding/line-height
+// (the class that opts the link into hover popovers).
+.usecase-header .usecase-verdict-badge {
   align-self: flex-start;
   font-family: var(--monoFont);
   font-weight: 500;
   font-size: 0.65rem;
+  line-height: 1.6;
   text-transform: uppercase;
   letter-spacing: 0.04em;
   padding: 0.2rem 0.55rem;
@@ -53,16 +56,16 @@
   transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-a.usecase-verdict-badge:hover {
+.usecase-header a.usecase-verdict-badge:hover {
   transform: rotate(-2deg) scale(1.05);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .usecase-verdict-badge {
+  .usecase-header .usecase-verdict-badge {
     transition: none !important;
   }
 
-  a.usecase-verdict-badge:hover {
+  .usecase-header a.usecase-verdict-badge:hover {
     transform: none;
   }
 }
@@ -72,4 +75,48 @@ a.usecase-verdict-badge:hover {
     flex-direction: column;
     gap: 0.75rem;
   }
+}
+
+.usecase-players {
+  margin-top: 3rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--lightgray);
+}
+
+.usecase-players-label {
+  font-family: var(--monoFont);
+  font-weight: 500;
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--gray);
+}
+
+.usecase-players-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.usecase-players .usecase-player {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--monoFont);
+  font-weight: 400;
+  font-size: 0.78rem;
+  color: var(--darkgray);
+  background: var(--lightgray);
+  border-radius: 0.35rem;
+  padding: 0.3rem 0.65rem;
+  text-decoration: none;
+}
+
+.usecase-players a.usecase-player:hover {
+  background: var(--highlight);
+}
+
+.usecase-player-logo {
+  border-radius: 0.2rem;
 }

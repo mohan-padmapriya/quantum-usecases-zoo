@@ -7,6 +7,14 @@ verdict: "[[Hardware-limited]]"
 tags:
   - usecase
   - sector/science
+players:
+  - "Q-CTRL | q-ctrl.com"
+  - "IBM | ibm.com"
+  - "Google Quantum AI | quantumai.google"
+  - "Phasecraft | phasecraft.io"
+  - "Quantinuum | quantinuum.com"
+  - "QuEra | quera.com"
+  - "Multiverse Computing | multiversecomputing.com"
 ---
 # What and why
 Simulating the time-dynamics of quantum systems evolving under a many-body Hamiltonian has been extensively researched for the longest time, after all, simulating quantum systems on quantum systems was arguably one of the earliest aims in the field. The focus of this usecase is to study how electrons, or more generally spins interact and evolve over time within crystalline solids or complex molecules, given these processes are governed by strong interparticle interactions, where the entanglement between the particles grows rapidly. 

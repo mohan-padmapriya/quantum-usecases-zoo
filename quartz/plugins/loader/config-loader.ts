@@ -483,6 +483,7 @@ export async function loadQuartzConfig(
     builtinPlugins.PageTypes.NotFoundPageType(),
     builtinPlugins.PageTypes.HomePageType(),
     builtinPlugins.PageTypes.UseCaseNotePageType(),
+    builtinPlugins.PageTypes.AboutPageType(),
   ]
 
   const plugins: PluginTypes = {

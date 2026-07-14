@@ -13,6 +13,7 @@ interface UseCaseFrontmatter {
   verdict?: string
   timeline?: string
   "Watch out for"?: string
+  players?: string[]
 }
 
 const UseCaseNoteBody: QuartzComponent = ({ fileData, allFiles, tree }: QuartzComponentProps) => {
@@ -21,6 +22,11 @@ const UseCaseNoteBody: QuartzComponent = ({ fileData, allFiles, tree }: QuartzCo
   const classes = frontmatter?.cssclasses ?? []
   const classString = ["popover-hint", ...classes].join(" ")
   const watchOutFor = frontmatter?.["Watch out for"]
+  // Entries are "Name | domain.com"; domain drives the logo and link, so a
+  // missing domain degrades to a plain unlinked chip.
+  const players = Array.isArray(frontmatter?.players)
+    ? frontmatter!.players.filter((p) => typeof p === "string" && p.trim() !== "")
+    : []
 
   // Parses "[[Page Name]]" or "[[Page Name|Display]]" into a link resolved
   // against real page slugs, or falls back to plain text.
@@ -30,14 +36,19 @@ const UseCaseNoteBody: QuartzComponent = ({ fileData, allFiles, tree }: QuartzCo
     const slug = resolvePageSlug(allFiles, target)
     const label = wikiLinkLabel(raw)
     if (!slug) return <>{label}</>
-    return <a href={resolveRelative(fileData.slug!, slug)}>{label}</a>
+    // "internal" opts into Quartz link popovers on hover.
+    return (
+      <a class="internal" href={resolveRelative(fileData.slug!, slug)}>
+        {label}
+      </a>
+    )
   }
 
   const VerdictBadge = ({ raw }: { raw: string }) => {
     const meta = getVerdictMeta(raw)
     const style = `background:${meta.color};color:${meta.textColor}`
-    const target = wikiLinkTarget(raw)
-    const slug = target !== raw ? resolvePageSlug(allFiles, target) : undefined
+    // Wikilink or plain value alike: link whenever a definition page exists.
+    const slug = resolvePageSlug(allFiles, wikiLinkTarget(raw))
     if (!slug) {
       return (
         <span class="usecase-verdict-badge" style={style}>
@@ -45,8 +56,13 @@ const UseCaseNoteBody: QuartzComponent = ({ fileData, allFiles, tree }: QuartzCo
         </span>
       )
     }
+    // "internal" opts into Quartz link popovers on hover.
     return (
-      <a class="usecase-verdict-badge" href={resolveRelative(fileData.slug!, slug)} style={style}>
+      <a
+        class="usecase-verdict-badge internal"
+        href={resolveRelative(fileData.slug!, slug)}
+        style={style}
+      >
         {meta.label}
       </a>
     )
@@ -84,6 +100,33 @@ const UseCaseNoteBody: QuartzComponent = ({ fileData, allFiles, tree }: QuartzCo
         </div>
       </div>
       <div class="markdown-preview-view markdown-rendered">{content}</div>
+      {players.length > 0 && (
+        <div class="usecase-players">
+          <span class="usecase-players-label">Who's working on this</span>
+          <div class="usecase-players-list">
+            {players.map((raw) => {
+              const [name, domain] = raw.split("|").map((s) => s.trim())
+              if (!domain) {
+                return <span class="usecase-player">{name}</span>
+              }
+              // Logos come from Google's favicon service so no image assets
+              // need to live in the repo.
+              const logo = `https://www.google.com/s2/favicons?domain=${encodeURIComponent(domain)}&sz=64`
+              return (
+                <a
+                  class="usecase-player"
+                  href={`https://${domain}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img class="usecase-player-logo" src={logo} alt="" width={20} height={20} loading="lazy" />
+                  {name}
+                </a>
+              )
+            })}
+          </div>
+        </div>
+      )}
     </article>
   )
 }

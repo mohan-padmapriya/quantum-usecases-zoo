@@ -19,7 +19,7 @@ configuration:
       header:
         name: "Fraunces"
         weights: [600, 700]
-      body: "Work Sans"
+      body: "Fraunces"
       code: "JetBrains Mono"
     colors:
       lightMode:
@@ -310,6 +310,10 @@ layout:
         - reader-mode
         - spacer
     usecase-note:
+      exclude:
+        - article-title
+        - content-meta
+    about:
       exclude:
         - article-title
         - content-meta
