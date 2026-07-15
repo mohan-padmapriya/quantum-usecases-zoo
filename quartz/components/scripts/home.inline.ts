@@ -4,6 +4,7 @@ function setupHomeFilters() {
 
   const groups = Array.from(root.querySelectorAll<HTMLElement>(".filter-group"))
   const tiles = Array.from(root.querySelectorAll<HTMLElement>(".tile"))
+  const emptyNote = root.querySelector<HTMLElement>(".tile-empty")
   const active: Record<string, Set<string>> = {}
 
   for (const group of groups) {
@@ -12,13 +13,16 @@ function setupHomeFilters() {
   }
 
   function applyFilters() {
+    let shown = 0
     for (const tile of tiles) {
       const visible = Object.entries(active).every(([key, values]) => {
         if (values.size === 0) return true
         return values.has(tile.dataset[key] ?? "")
       })
       tile.classList.toggle("is-hidden", !visible)
+      if (visible) shown++
     }
+    if (emptyNote) emptyNote.hidden = shown > 0
   }
 
   function onPillClick(this: HTMLButtonElement) {

@@ -36,15 +36,6 @@ function parts(raw: string): string[] {
   return raw.split("|").map((s) => s.trim())
 }
 
-function initials(name: string): string {
-  return name
-    .split(/\s+/)
-    .filter(Boolean)
-    .slice(0, 2)
-    .map((w) => w[0]?.toUpperCase() ?? "")
-    .join("")
-}
-
 const AboutBody: QuartzComponent = ({ fileData, tree }: QuartzComponentProps) => {
   const fm = (fileData.frontmatter ?? {}) as AboutFrontmatter
   const name = fm.name ?? fm.title ?? "About"
@@ -92,35 +83,14 @@ const AboutBody: QuartzComponent = ({ fileData, tree }: QuartzComponentProps) =>
   return (
     <article class="about popover-hint">
       <header class="about-hero">
-        <div class="about-portrait">
-          {fm.photo ? (
-            <img class="about-portrait-img" src={fm.photo} alt={`Portrait of ${name}`} />
-          ) : (
-            <span class="about-portrait-monogram" aria-hidden="true">
-              {initials(name)}
-            </span>
-          )}
-        </div>
-        <div class="about-hero-text">
-          <h1 class="about-name">{name}</h1>
-          {(fm.now || fm.next) && (
-            <div class="about-roles">
-              {fm.now && (
-                <p class="about-role">
-                  <span class="about-role-tag">Now</span>
-                  {fm.now}
-                </p>
-              )}
-              {fm.next && (
-                <p class="about-role">
-                  <span class="about-role-tag">Next</span>
-                  {fm.next}
-                </p>
-              )}
-            </div>
-          )}
-          <div class="about-bio">{bio}</div>
-        </div>
+        <h1 class="about-name">{name}</h1>
+        {(fm.now || fm.next) && (
+          <div class="about-roles">
+            {fm.now && <p class="about-role">{fm.now}</p>}
+            {fm.next && <p class="about-role">{fm.next}</p>}
+          </div>
+        )}
+        <div class="about-bio">{bio}</div>
       </header>
 
       <section class="about-dossier" aria-label="Credentials">

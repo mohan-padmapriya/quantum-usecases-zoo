@@ -28,4 +28,7 @@ seeking: I'm looking for an industry partner where I can apply my technical trai
 email: padmapriya.mohan6@gmail.com
 linkedin:
 ---
+![[priya.jpeg]]
+
 I'm a quantum engineer by training who likes working in the translation layer, that is the useful space between the physics and the people who fund, govern, and deploy it. I studied quantum science and engineering, but I spend much of my time helping stakeholders in policy, governance, business, and civil society make sense of what quantum can and cannot do. I started cataloguing use cases in early 2025 while I was still an MSc student at TU Delft, out of frustration with the distance between the hype and the evidence.
+

@@ -27,6 +27,17 @@ function uniqueSorted(values: (string | undefined)[]): string[] {
   return [...new Set(values.filter((v): v is string => Boolean(v)))].sort()
 }
 
+// One minimal line-glyph per sector (rendered from the sprite below).
+const SECTOR_ICON: Record<string, string> = {
+  Aerospace: "ic-aerospace",
+  Chemistry: "ic-chemistry",
+  Climate: "ic-climate",
+  Energy: "ic-energy",
+  Finance: "ic-finance",
+  "Life Sciences": "ic-life",
+  Science: "ic-science",
+}
+
 const HomeBody: QuartzComponent = ({ fileData, allFiles, tree }: QuartzComponentProps) => {
   const title = (fileData.frontmatter?.title as string | undefined) ?? "Quantum Use Case Zoo"
   const description = fileData.frontmatter?.description as string | undefined
@@ -80,8 +91,39 @@ const HomeBody: QuartzComponent = ({ fileData, allFiles, tree }: QuartzComponent
 
   return (
     <div class="usecase-home">
+      {/* Sector glyph sprite — one minimal line-icon per sector. */}
+      <svg class="sector-sprite" aria-hidden="true">
+        <symbol id="ic-aerospace" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round">
+          <path d="M2 20 L22 4 L12.5 20 L10.5 12.5 Z" />
+        </symbol>
+        <symbol id="ic-chemistry" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round">
+          <path d="M12 3 L20 7.5 V16.5 L12 21 L4 16.5 V7.5 Z" />
+          <circle cx="12" cy="12" r="1.1" fill="currentColor" stroke="none" />
+        </symbol>
+        <symbol id="ic-climate" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 19 C5 10 12 5 20 5 C20 13 13 19 5 19 Z" />
+          <path d="M6 18 L16 8" />
+        </symbol>
+        <symbol id="ic-energy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round">
+          <path d="M13 2 L4 13.5 H10.5 L9.5 22 L20 9.5 H13 Z" />
+        </symbol>
+        <symbol id="ic-finance" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 20 H21" />
+          <path d="M4 15 L9 10 L13 13.5 L20 6" />
+          <path d="M20 6 H16 M20 6 V10" />
+        </symbol>
+        <symbol id="ic-life" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
+          <path d="M8 3 C16 8 8 16 16 21" />
+          <path d="M16 3 C8 8 16 16 8 21" />
+          <path d="M9.5 6 H14.5 M9 12 H15 M9.5 18 H14.5" />
+        </symbol>
+        <symbol id="ic-science" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
+          <path d="M3 12 Q6.75 3 10.5 12 T18 12" />
+          <path d="M18 12 H21" />
+        </symbol>
+      </svg>
+
       <nav class="home-nav">
-        <span class="home-nav-logo">{title}</span>
         <div class="home-nav-links">
           <a href={resolveRelative(fileData.slug!, simplifySlug("Methodology"))} class="home-nav-link">Methodology</a>
           <a href={resolveRelative(fileData.slug!, simplifySlug("about"))} class="home-nav-link">About</a>
@@ -99,20 +141,23 @@ const HomeBody: QuartzComponent = ({ fileData, allFiles, tree }: QuartzComponent
         </div>
       </nav>
 
-      <h1 class="usecase-home-title">{title}</h1>
-
-      {description && <p class="usecase-home-thesis">{description}</p>}
+      <header class="home-head">
+        <h1 class="usecase-home-title">{title}</h1>
+        {description && <p class="usecase-home-thesis">{description}</p>}
+      </header>
 
       {usecases.length > 0 && (
-        <p class="usecase-scoreboard">
-          <span class="scoreboard-total">{usecases.length} use cases assessed</span>
-          {scoreboard.map(({ key, meta, count }) => (
-            <span class="scoreboard-item" data-verdict={key}>
-              <span class="scoreboard-dot" style={`background:${meta.color}`}></span>
-              {count} {meta.label.toLowerCase()}
-            </span>
-          ))}
-        </p>
+        <div class="usecase-meta-row">
+          <p class="usecase-scoreboard">
+            <span class="scoreboard-total">{usecases.length} use cases assessed</span>
+            {scoreboard.map(({ key, meta, count }) => (
+              <span class="scoreboard-item" data-verdict={key}>
+                <span class="scoreboard-dot" style={`background:${meta.color}`}></span>
+                {count} {meta.label.toLowerCase()}
+              </span>
+            ))}
+          </p>
+        </div>
       )}
 
       {startHere.length > 0 && (
@@ -149,8 +194,8 @@ const HomeBody: QuartzComponent = ({ fileData, allFiles, tree }: QuartzComponent
 
       <div class="tile-grid">
         {usecases.map((u) => {
-          const verdictMeta = getVerdictMeta(u.verdict)
-          const meta = [u.sector, u.timeline].filter(Boolean).join(" · ")
+          const meta = getVerdictMeta(u.verdict)
+          const iconId = u.sector ? SECTOR_ICON[u.sector] : undefined
           return (
             <a
               href={resolveRelative(fileData.slug!, u.slug)}
@@ -159,17 +204,30 @@ const HomeBody: QuartzComponent = ({ fileData, allFiles, tree }: QuartzComponent
               data-timeline={u.timeline ?? ""}
               data-verdict={u.verdictKey}
             >
-              <span
-                class="tile-badge"
-                style={`background:${verdictMeta.color};color:${verdictMeta.textColor}`}
-              >
-                {verdictMeta.label}
-              </span>
+              <div class="tile-top">
+                <span class="tile-verdict">
+                  <span class="tile-verdict-mark" style={`background:${meta.color}`}></span>
+                  <span class="tile-verdict-label">{meta.label}</span>
+                </span>
+                {iconId && (
+                  <svg class="tile-icon" width="22" height="22" aria-hidden="true">
+                    <use href={`#${iconId}`}></use>
+                  </svg>
+                )}
+              </div>
               <h3 class="tile-title">{u.title}</h3>
-              {meta && <p class="tile-meta">{meta}</p>}
+              <span class="tile-spacer"></span>
+              <div class="tile-meta">
+                {u.sector && <span>{u.sector}</span>}
+                {u.sector && u.timeline && <span class="dot">/</span>}
+                {u.timeline && <span>{u.timeline}</span>}
+              </div>
             </a>
           )
         })}
+        <p class="tile-empty" hidden>
+          No use cases match those filters.
+        </p>
       </div>
 
       {usecases.length === 0 && (

@@ -1,14 +1,22 @@
 @use "./variables.scss" as *;
 
+// Self-hosted site fonts: Spectral (serif) + Mako (sans). Used site-wide.
+@font-face { font-family: "Spectral"; font-style: normal; font-weight: 300; font-display: swap; src: url("/static/fonts/spectral-300.woff2") format("woff2"); }
+@font-face { font-family: "Spectral"; font-style: normal; font-weight: 400; font-display: swap; src: url("/static/fonts/spectral-400.woff2") format("woff2"); }
+@font-face { font-family: "Spectral"; font-style: normal; font-weight: 500; font-display: swap; src: url("/static/fonts/spectral-500.woff2") format("woff2"); }
+@font-face { font-family: "Spectral"; font-style: normal; font-weight: 600; font-display: swap; src: url("/static/fonts/spectral-600.woff2") format("woff2"); }
+@font-face { font-family: "Spectral"; font-style: normal; font-weight: 700; font-display: swap; src: url("/static/fonts/spectral-700.woff2") format("woff2"); }
+@font-face { font-family: "Mako"; font-style: normal; font-weight: 400; font-display: swap; src: url("/static/fonts/mako-400.woff2") format("woff2"); }
+
 html {
   font-size: 17px;
 }
 
 :root {
   --monoFont: "IBM Plex Mono", monospace;
-  --dmFont: "DM Sans", sans-serif;
-  --bodyFont: "Literata", serif;
-  --headerFont: "Fraunces", serif;
+  --dmFont: "Mako", system-ui, sans-serif;
+  --bodyFont: "Spectral", Georgia, serif;
+  --headerFont: "Spectral", Georgia, serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -21,9 +29,9 @@ h1, h2, h3, h4, h5, h6 {
 body[data-slug="About"] .content-meta,
 body[data-slug="Methodology"] .content-meta { display: none; }
 
-// Sidebar site title: keep Fraunces regardless of --headerFont override.
+// Sidebar site title.
 .page-title {
-  font-family: "Fraunces", serif !important;
+  font-family: "Spectral", serif !important;
 }
 
 // Explorer sidebar: body font, truncate long titles to one line.

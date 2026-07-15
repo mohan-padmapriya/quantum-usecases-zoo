@@ -7,40 +7,8 @@
 
 // ---- Hero -------------------------------------------------------------
 .about-hero {
-  display: grid;
-  grid-template-columns: minmax(0, 12rem) 1fr;
-  gap: clamp(1.5rem, 4vw, 2.75rem);
-  align-items: start;
   margin-top: 1rem;
   animation: about-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-.about-portrait {
-  position: relative;
-  aspect-ratio: 4 / 5;
-  border-radius: 0.6rem;
-  overflow: hidden;
-  background: var(--lightgray);
-  box-shadow: 0 1px 0 var(--lightgray);
-}
-
-.about-portrait-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.about-portrait-monogram {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  font-family: var(--headerFont);
-  font-size: 3.5rem;
-  font-weight: 600;
-  color: var(--secondary);
-  letter-spacing: -0.02em;
 }
 
 .about-name {
@@ -62,25 +30,8 @@
 .about-role {
   margin: 0;
   font-family: var(--bodyFont);
-  font-size: 1rem;
+  font-size: 1.05rem;
   color: var(--darkgray);
-  display: flex;
-  gap: 0.6rem;
-  align-items: baseline;
-}
-
-.about-role-tag {
-  flex: none;
-  font-family: var(--monoFont);
-  font-size: 0.6rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.11em;
-  color: var(--secondary);
-  border: 1px solid color-mix(in srgb, var(--secondary) 40%, transparent);
-  border-radius: 0.25rem;
-  padding: 0.1rem 0.4rem;
-  transform: translateY(-0.1rem);
 }
 
 .about-bio {
