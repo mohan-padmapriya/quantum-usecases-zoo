@@ -6,13 +6,12 @@ timeline: Unclear
 tags:
   - usecase
   - sector/finance
-Watch out for: "[[A better quantum algorithm]]"
 players:
-  - "JPMorgan | jpmorgan.com"
-  - "HSBC | hsbc.com"
-  - "Toshiba | global.toshiba"
-  - "D-Wave | dwavequantum.com"
-  - "IBM | ibm.com"
+  - JPMorgan | jpmorgan.com
+  - HSBC | hsbc.com
+  - Toshiba | global.toshiba
+  - D-Wave | dwavequantum.com
+  - IBM | ibm.com
 ---
 # What and why
 Finding profitable trades, such as currency loops where converting through several currencies leaves you with more than you started. The trouble is that the core problem is already easy for ordinary computers. A standard algorithm finds these currency loops quickly, so the quantum version only looks interesting on artificially complicated setups. Further, high-frequency trading needs answers in less than a millionth of a second, while sending a problem to a quantum computer in the cloud and getting it back takes thousandths of a second or longer, which is far too slow. Demonstrations on quantum annealers are quicker but so far have not beaten fast classical methods at a useful scale.
@@ -23,7 +22,7 @@ The struggle for classical systems is to process vast combinatorial solution spa
 
 This problem can be rewritten as a Quadratic Unconstrained Binary Optimization (QUBO) problem, which can then be solved on a quantum computer. 
 
-# Gates of quantum advantage
+# [[Methodology|Four gates of quantum advantage]]
 ## Theoretical quantum advantage
 Current quantum proposals are largely NISQ heuristics, mapping the task to a Quadratic Unconstrained Binary Optimization (QUBO) format for annealers or utilizing the Quantum Approximate Optimization Algorithm (QAOA). These methods have no identified super-quadratic speedup over the best classical algorithm - Bellman Ford, which is already polynomial.  And most existing research benchmarks quantum performance against generic heuristics on toy-sized models rather than the actual classical state-of-the-art. 
 

@@ -21,7 +21,7 @@ technical:
 society:
   - Policy Fellow · QpiAI & QETCI | https://qetci.org/ | Drafting recommendations to advance the development of quantum-computing hardware in India.
   - Centre for Quantum & Society · Quantum Delta NL | https://qdnl.nl/ | Studied technosolutionism in the framing of quantum use cases.
-  - AI Policy Fellow · Mila | https://mila.quebec/en | Authored policy considerations at the quantum–AI intersection; presented at Mila's AI Policy Fellowship launch.
+  - Inaugural AI Policy Fellow · Mila | https://mila.quebec/en | Authored policy considerations at the quantum–AI intersection; presented at Mila's AI Policy Fellowship launch.
   - Co-author, Intelligence Report 2024 · Open Quantum Institute, CERN | http://open-quantum-institute.cern/ | Presented to academics, state ambassadors, UN members and industry at GESDA's Quantum Diplomacy Symposium.
   - Co-author, Quantum Value Chain Report 2023 · QETCI | https://qetci.org/ | Proposed a framework for value-chain analysis of India's quantum ecosystem; launched at the National Quantum S&T Symposium, New Delhi.
 seeking: I'm looking for an industry partner where I can apply my technical training and translation skills to connect research, policy and strategy, and bring that real-world experience back into my doctoral work.
@@ -30,5 +30,5 @@ linkedin:
 ---
 ![[priya.jpeg]]
 
-I'm a quantum engineer by training who likes working in the translation layer, that is the useful space between the physics and the people who fund, govern, and deploy it. I studied quantum science and engineering, but I spend much of my time helping stakeholders in policy, governance, business, and civil society make sense of what quantum can and cannot do. I started cataloguing use cases in early 2025 while I was still an MSc student at TU Delft, out of frustration with the distance between the hype and the evidence.
+I'm a quantum engineer by training who likes working in the translation layer - in the space between the physics and the people who fund, govern, and deploy it. I studied quantum science and engineering, but I spend much of my time helping stakeholders in policy, governance, business, and civil society make sense of what quantum can and cannot do. I started cataloguing use cases in early 2025 while I was still an MSc student at TU Delft, as an exercise in examining what quantum can and cannot do. 
 

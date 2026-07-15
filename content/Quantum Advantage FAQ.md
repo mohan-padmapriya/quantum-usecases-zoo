@@ -4,7 +4,6 @@ Albeit the definitions are ever evolving, generally, quantum advantage is a fami
 2. **quantum supremacy**, in which quantum computer might beat a classical computer on some task, useful or not
 3. **practical quantum advantage/quantum utility**, in which a useful problem is solved by a quantum computer faster in wall-clock time
 4. **economic advantage**, where a quantum computer is faster on a cost-equivalent basis
-5. 
 
 Theoretical/computional advantage is based on complexity classes (BQP vs classical classes), and often, instead of relying on unconditional proofs, rests on conjectured classical hardness assumptions. This means that even Shor's exponential speed-up is conditional on the classical hardness of factoring, and that the supremacy arguments often proved for sampling problems rely on complexity-theoretic conjectures (e.g., non-collapse of the polynomial hierarchy). Nonetheless, sampling, and more so factoring, are quantum advantage favourites. From Aaronson, and Harrow and Montanaro, advantage, albeit theoretical requires complexity-theoretic assumptions (at minimum that quantum systems cannot be efficiently classically simulated),  a near-term-implementable quantum algorithm, and an efficient verification method. 
 
