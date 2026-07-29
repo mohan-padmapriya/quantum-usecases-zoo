@@ -26,7 +26,7 @@ society:
   - Co-author, Quantum Value Chain Report 2023 · QETCI | https://qetci.org/ | Proposed a framework for value-chain analysis of India's quantum ecosystem; launched at the National Quantum S&T Symposium, New Delhi.
 seeking: I'm looking for an industry partner where I can apply my technical training and translation skills to connect research, policy and strategy, and bring that real-world experience back into my doctoral work.
 email: padmapriya.mohan6@gmail.com
-linkedin:
+linkedin: https://www.linkedin.com/in/padmapriya-mohan/
 ---
 ![[priya.jpeg]]
 

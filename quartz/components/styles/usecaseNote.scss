@@ -1,73 +1,97 @@
 @use "../../styles/variables.scss" as *;
 
+// Use-case note header: hairline-ruled panel in the homepage design language
+// (no filled card, no rounded corners; Fraunces italic title comes from the
+// shared page-title rule in custom.scss).
+
 .usecase-header {
-  background: var(--lightgray);
-  border-radius: 0.5rem;
-  padding: 1.25rem 1.5rem;
   margin-top: 2rem;
   margin-bottom: 2rem;
+  padding-bottom: 1.4rem;
+  border-bottom: 1px solid var(--home-rule);
 }
 
 .usecase-header-title {
-  margin: 0 0 0.75rem 0;
-  font-size: 1.8rem;
+  margin: 0 0 1.2rem 0;
+  font-size: clamp(1.9rem, 4.5vw, 2.7rem);
+  line-height: 1.05;
 }
 
 .usecase-header-meta {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  gap: 1.25rem;
+  align-items: flex-start;
+  gap: 1rem 2rem;
 }
 
 .usecase-header-field {
   display: flex;
   flex-direction: column;
+  gap: 0.3rem;
   font-family: var(--monoFont);
   font-weight: 400;
-  font-size: 0.82rem;
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
   color: var(--darkgray);
+
+  a.internal:not(.usecase-verdict-badge) {
+    background: none;
+    padding: 0;
+    color: var(--darkgray);
+    text-decoration: underline;
+    text-decoration-color: var(--home-amber);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+
+    &:hover {
+      color: var(--dark);
+    }
+  }
 }
 
 .usecase-header-label {
   font-family: var(--monoFont);
   font-weight: 500;
-  font-size: 0.62rem;
+  font-size: 0.6rem;
   text-transform: uppercase;
-  letter-spacing: 0.09em;
+  letter-spacing: 0.16em;
   color: var(--gray);
 }
 
-// Matches .tile-badge on the homepage so the verdict reads as one system.
+// Matches .tile-chip on the homepage so the verdict reads as one system.
 // Scoped under .usecase-header to out-rank a.internal's padding/line-height
 // (the class that opts the link into hover popovers).
 .usecase-header .usecase-verdict-badge {
   align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
   font-family: var(--monoFont);
   font-weight: 500;
-  font-size: 0.65rem;
+  font-size: 0.62rem;
   line-height: 1.6;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
-  padding: 0.2rem 0.55rem;
-  border-radius: 0.25rem;
-  margin-top: 0.15rem;
+  letter-spacing: 0.07em;
+  white-space: nowrap;
+  color: var(--dark);
+  background: var(--light);
+  border: 1px solid var(--home-rule);
+  border-radius: 0;
+  padding: 0.14rem 0.45rem;
+  margin-top: 0.1rem;
   text-decoration: none;
-  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: border-color 0.15s ease;
+}
+
+.usecase-verdict-mark {
+  width: 0.42rem;
+  height: 0.42rem;
+  flex: none;
 }
 
 .usecase-header a.usecase-verdict-badge:hover {
-  transform: rotate(-2deg) scale(1.05);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .usecase-header .usecase-verdict-badge {
-    transition: none !important;
-  }
-
-  .usecase-header a.usecase-verdict-badge:hover {
-    transform: none;
-  }
+  border-color: var(--dark);
 }
 
 @media all and ($mobile) {
@@ -80,15 +104,15 @@
 .usecase-players {
   margin-top: 3rem;
   padding-top: 1.25rem;
-  border-top: 1px solid var(--lightgray);
+  border-top: 1px solid var(--home-rule);
 }
 
 .usecase-players-label {
   font-family: var(--monoFont);
   font-weight: 500;
-  font-size: 0.62rem;
+  font-size: 0.6rem;
   text-transform: uppercase;
-  letter-spacing: 0.09em;
+  letter-spacing: 0.16em;
   color: var(--gray);
 }
 
@@ -105,18 +129,32 @@
   gap: 0.45rem;
   font-family: var(--monoFont);
   font-weight: 400;
-  font-size: 0.78rem;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
   color: var(--darkgray);
-  background: var(--lightgray);
-  border-radius: 0.35rem;
+  background: var(--light);
+  border: 1px solid var(--home-rule);
+  border-radius: 0;
   padding: 0.3rem 0.65rem;
   text-decoration: none;
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease;
 }
 
 .usecase-players a.usecase-player:hover {
-  background: var(--highlight);
+  border-color: var(--dark);
+  background: var(--home-tile-hover);
 }
 
 .usecase-player-logo {
   border-radius: 0.2rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .usecase-header .usecase-verdict-badge,
+  .usecase-players .usecase-player {
+    transition: none !important;
+  }
 }

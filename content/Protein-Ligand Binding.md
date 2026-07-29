@@ -14,6 +14,7 @@ players:
   - Pasqal | pasqal.com
   - IBM | ibm.com
   - Roche | roche.com
+signal: 4
 ---
 # What and why
 Structure-based drug discovery is largely a search for small-molecule ligands that bind a target protein tightly and selectively. The goal is to predict the binding free energy (affinity) to roughly chemical accuracy (~1 kcal/mol), since about 1.4 kcal/mol corresponds to a tenfold change in binding strength. Getting this right early lets chemists rank candidate molecules before synthesising them. It should be noted that binding affinity is not primarily an electronic-structure quantity. It is a statistical-mechanical average over thousands of atoms, influenced by conformational sampling of the protein, entropy, and other factors. Quantum computers can potentially accelerate electronic-structure problems, not free-energy sampling. Even a perfect quantum-chemistry oracle for the binding site would not address the actual bottleneck (thermodynamic sampling over many configurations), because no efficient quantum algorithm is known for that sampling problem. 

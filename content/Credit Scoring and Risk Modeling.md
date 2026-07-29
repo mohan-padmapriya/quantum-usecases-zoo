@@ -12,6 +12,7 @@ players:
   - CaixaBank | caixabank.com
   - Crédit Agricole CIB | ca-cib.com
   - Multiverse Computing | multiversecomputing.com
+signal: 2
 ---
 # What and why
 Here the goal is to judge how likely a borrower is to default, or similarly, estimating how much a whole loan portfolio could lose. A central focus within this application is the detection of "fallen angels," which refers to companies that experience a significant credit rating downgrade from investment-grade to sub-investment grade status. The process involves processing large, high-dimensional datasets containing tens of thousands of historical records and over a hundred distinct financial and market variables to train predictive models. 

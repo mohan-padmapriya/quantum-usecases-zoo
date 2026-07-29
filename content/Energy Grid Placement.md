@@ -14,6 +14,7 @@ players:
   - Multiverse Computing | multiversecomputing.com
   - IonQ | ionq.com
   - Oak Ridge National Laboratory | ornl.gov
+signal: 3
 ---
 # What and why
 Deciding where to put batteries on a grid and when to charge or discharge them, at minimum operational cost, is important for the power industry because it ensures reliability, and at the end of the year, also results in annual financial savings. This is what the problem of "unit commitment" is, and the standard classical approach involves Mixed-Integer Programming (MIP), which is typically executed using classical deterministic solvers like CPLEX. However, this problem is NP-hard, which means we see an exponential growth in complexity as the number of generators and time periods increase. Consequently, conventional methods become computationally intractable when applied to large-scale, modern electrical grids. Quantum computing could be uniquely suited to this problem because algorithms like QAOA are designed to tackle the discrete binary on/off decisions that cause the combinatorial complexity of UC. Hybrid frameworks might optimise this by delegating intensive combinatorial subproblems to quantum units while handling continuous variables classically.

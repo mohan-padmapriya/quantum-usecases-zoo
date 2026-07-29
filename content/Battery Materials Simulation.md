@@ -17,6 +17,8 @@ players:
   - Quantinuum | quantinuum.com
   - QunaSys | qunasys.com
   - Mitsubishi Chemical | mcgc.com
+signal: 4
+note: automobile industry
 ---
 # What and why
 A lithium-ion cathode is a transition-metal oxide in which lithium shuttles in and out during charge and discharge. The properties that are interesting to material scientists, like cell voltage, ionic mobility, thermal stability, degradation mechanisms, are caused by electronic structure of those partially filled transition-metal *d* orbitals, in which electrons experience strong electronic correlations. It is in this correlated-electron regime that classical methods used to determine these properties, typically DFT + dynamic mean-field theory, becomes expensive and prone to errors. 

@@ -10,6 +10,7 @@ players:
   - Terra Quantum | terraquantum.swiss
   - Pasqal | pasqal.com
   - GENCI | genci.fr
+signal: 2
 ---
 # What and why
 Forecasting solar and wind output a few hours to days ahead lets operators balance supply and demand, which can save operators a claimed $100M annually. The best classical methods available to date are large-scale AI weather models such as Google’s GenCast and Microsoft’s Aurora. However, even these models struggle with accurately modelling high-dimensional, non-linear atmospheric dependencies that determine power output, and also generally with the computational intensity required for hyper-local 1km-resolution forecasts. 

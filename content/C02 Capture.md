@@ -11,6 +11,7 @@ players:
   - Open Quantum Institute | open-quantum-institute.cern
   - QCentroid | qcentroid.xyz
   - ETH Zurich | ethz.ch
+signal: 2
 ---
 
 # What and why

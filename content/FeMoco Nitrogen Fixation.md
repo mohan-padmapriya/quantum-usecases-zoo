@@ -13,6 +13,9 @@ players:
   - PsiQuantum | psiquantum.com
   - BASF | basf.com
   - Boehringer Ingelheim | boehringer-ingelheim.com
+signal: 5
+blurb: The poster child — and the most re-estimated.
+note: popular!
 ---
 # What and why
 Industrial nitrogen fixation via the Haber-Bosch process, which produces ammonia, consumes ~2% of global electricity. Understanding how nitrogenase, the enzyme that performs biological nitrogen fixation under ambient conditions, could help make the Haber-Bosch process, and therefore ammonia production more efficient. This is called the FeMoco problem, and involves simulating the electronic structure of the iron-molybdenum cofactor within the nitrogenase enzyme.

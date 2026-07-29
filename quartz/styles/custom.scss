@@ -1,33 +1,167 @@
 @use "./variables.scss" as *;
 
 // Self-hosted site fonts: Spectral (serif) + Mako (sans). Used site-wide.
-@font-face { font-family: "Spectral"; font-style: normal; font-weight: 300; font-display: swap; src: url("/static/fonts/spectral-300.woff2") format("woff2"); }
-@font-face { font-family: "Spectral"; font-style: normal; font-weight: 400; font-display: swap; src: url("/static/fonts/spectral-400.woff2") format("woff2"); }
-@font-face { font-family: "Spectral"; font-style: normal; font-weight: 500; font-display: swap; src: url("/static/fonts/spectral-500.woff2") format("woff2"); }
-@font-face { font-family: "Spectral"; font-style: normal; font-weight: 600; font-display: swap; src: url("/static/fonts/spectral-600.woff2") format("woff2"); }
-@font-face { font-family: "Spectral"; font-style: normal; font-weight: 700; font-display: swap; src: url("/static/fonts/spectral-700.woff2") format("woff2"); }
-@font-face { font-family: "Mako"; font-style: normal; font-weight: 400; font-display: swap; src: url("/static/fonts/mako-400.woff2") format("woff2"); }
+@font-face {
+  font-family: "Spectral";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("/static/fonts/spectral-300.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Spectral";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/static/fonts/spectral-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Spectral";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/static/fonts/spectral-500.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Spectral";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/static/fonts/spectral-600.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Spectral";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/static/fonts/spectral-700.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Mako";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/static/fonts/mako-400.woff2") format("woff2");
+}
+// Homepage display + handwriting fonts (variable): Fraunces italic hero, Caveat annotations.
+@font-face {
+  font-family: "Fraunces";
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/static/fonts/fraunces-italic-var.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Caveat";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("/static/fonts/caveat-var.woff2") format("woff2");
+}
 
 html {
   font-size: 17px;
 }
 
 :root {
-  --monoFont: "IBM Plex Mono", monospace;
+  --monoFont: "JetBrains Mono", "IBM Plex Mono", ui-monospace, monospace;
   --dmFont: "Mako", system-ui, sans-serif;
   --bodyFont: "Spectral", Georgia, serif;
   --headerFont: "Spectral", Georgia, serif;
+  --displayFont: "Fraunces", "Spectral", Georgia, serif;
+  --handFont: "Caveat", "Segoe Script", cursive;
 }
 
-h1, h2, h3, h4, h5, h6 {
+// ── Site-wide design system (carried over from the homepage) ─────────────────
+// Graph-paper canvas, hairline rules, amber accent, handwriting red.
+
+body {
+  --home-amber: #e8940a;
+  --home-hand: #a8432c;
+  --home-rule: color-mix(in srgb, var(--dark) 14%, var(--light));
+  --home-rule-soft: color-mix(in srgb, var(--dark) 9%, var(--light));
+  --home-grid-line: color-mix(in srgb, var(--dark) 5%, transparent);
+  --home-tile-hover: color-mix(in srgb, var(--dark) 13%, var(--light));
+
+  background-color: var(--light);
+  background-image:
+    linear-gradient(to right, var(--home-grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--home-grid-line) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+:root[saved-theme="dark"] body {
+  --home-hand: #d4795a;
+  --home-grid-line: color-mix(in srgb, var(--dark) 7%, transparent);
+}
+
+// Hand-drawn amber brush underline, as a data-URI so any page title can use it.
+$brush-underline: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 26" preserveAspectRatio="none"><path d="M8 15 C 130 7, 280 19, 450 12 C 610 5, 750 17, 952 9" fill="none" stroke="%23e8940a" stroke-width="7.5" stroke-linecap="round"/><path d="M30 20 C 220 13, 420 21, 620 15 C 740 12, 830 16, 905 14" fill="none" stroke="%23e8940a" stroke-width="4.5" stroke-linecap="round" opacity="0.85"/></svg>');
+
+// Page titles across the site: Fraunces italic + amber brush underline,
+// matching the homepage hero.
+.article-title,
+.usecase-header-title,
+.about-name {
+  font-family: var(--displayFont);
+  font-style: italic;
+  font-weight: 900;
+  font-optical-sizing: auto;
+  letter-spacing: -0.01em;
+  width: fit-content;
+  max-width: 100%;
+  background-image: $brush-underline;
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  background-size: 100% 0.18em;
+  padding-bottom: 0.22em;
+}
+
+// Hairline rules everywhere.
+.center hr,
+.markdown-rendered hr {
+  border: 0;
+  border-top: 1px solid var(--home-rule);
+  background: none;
+  height: 0;
+}
+
+// Handwritten annotations inside content, matching the homepage tile notes.
+// In markdown: <span class="hand">watch this one</span> for inline use, or
+// <p class="hand">a whole aside</p> for a standalone line (slightly tilted).
+.hand {
+  font-family: var(--handFont);
+  font-weight: 600;
+  font-size: 1.2em;
+  line-height: 1.2;
+  color: var(--home-hand);
+}
+
+p.hand,
+div.hand {
+  display: inline-block;
+  transform: rotate(-1.2deg);
+  transform-origin: left center;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: 600;
   letter-spacing: -0.01em;
 }
 
-.note-properties { display: none; }
+.note-properties {
+  display: none;
+}
 
 body[data-slug="About"] .content-meta,
-body[data-slug="Methodology"] .content-meta { display: none; }
+body[data-slug="Methodology"] .content-meta {
+  display: none;
+}
 
 // Sidebar site title.
 .page-title {

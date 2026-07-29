@@ -13,6 +13,8 @@ players:
   - D-Wave | dwavequantum.com
   - Goldman Sachs | goldmansachs.com
   - JPMorgan | jpmorgan.com
+signal: 2
+note: popular!
 ---
 # What and why
 Choosing asset weights to balance return against risk, including the harder discrete versions with lot sizes, transaction costs, and cardinality limits is an NP-hard problem. Quantum methods (QAOA, annealing) map the problem to a QUBO, but a 2025 TU Munich benchmark found classical heuristics like simulated annealing and tabu search do better. There is also the fact NP-hardness describes worst cases, not the problem instances that are relevant to banks. Extensive benchmarks on 250 real-world datasets show that professional classical solvers like Gurobi can reach proven optimal solutions for up to 1,000 assets in just seconds. Further, in the real world, the optimiser is almost never the bottleneck, rather, the true difficulty lies in accurately estimating the future returns and risks (covariances). Quantum-inspired tensor networks might be useful, but this runs on classical hardware.

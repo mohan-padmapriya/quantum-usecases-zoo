@@ -13,6 +13,7 @@ players:
   - "IBM | ibm.com"
   - "Barclays | home.barclays"
   - "Classiq | classiq.io"
+signal: 4
 ---
 # What and why
 The primary goal of this usecase is  to determine the fair value of entering a derivative contract today, given the inherent uncertainty about the future values of the underlying assets. This valuation allows banks and investors to protect against adverse market moves, speculate, and also to calculate metrics like Value at Risk (VaR), which is important for regulatory compliance. For simple, "path-independent" derivatives (where the final payoff depends only on the asset price at the very end), analytical solutions like the Black-Scholes model are used.

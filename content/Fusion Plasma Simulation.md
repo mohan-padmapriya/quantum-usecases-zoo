@@ -13,6 +13,7 @@ players:
   - University of Colorado | colorado.edu
   - Rigetti | rigetti.com
   - IBM | ibm.com
+signal: 3
 ---
 # What and why
 Simulating the turbulent plasma inside a fusion reactor is one of the hardest computations in physics. But understanding plasma behaviour is essential to design and operate fusion reactors. In fact, these simulations are among the top consumers of scientific computing, which would make any credible speedup to the field extremely valuable. 

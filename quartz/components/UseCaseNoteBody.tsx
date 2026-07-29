@@ -44,25 +44,24 @@ const UseCaseNoteBody: QuartzComponent = ({ fileData, allFiles, tree }: QuartzCo
     )
   }
 
+  // Bordered chip with a colored square, matching the homepage tile chips.
   const VerdictBadge = ({ raw }: { raw: string }) => {
     const meta = getVerdictMeta(raw)
-    const style = `background:${meta.color};color:${meta.textColor}`
+    const mark = <span class="usecase-verdict-mark" style={`background:${meta.color}`}></span>
     // Wikilink or plain value alike: link whenever a definition page exists.
     const slug = resolvePageSlug(allFiles, wikiLinkTarget(raw))
     if (!slug) {
       return (
-        <span class="usecase-verdict-badge" style={style}>
+        <span class="usecase-verdict-badge">
+          {mark}
           {meta.label}
         </span>
       )
     }
     // "internal" opts into Quartz link popovers on hover.
     return (
-      <a
-        class="usecase-verdict-badge internal"
-        href={resolveRelative(fileData.slug!, slug)}
-        style={style}
-      >
+      <a class="usecase-verdict-badge internal" href={resolveRelative(fileData.slug!, slug)}>
+        {mark}
         {meta.label}
       </a>
     )

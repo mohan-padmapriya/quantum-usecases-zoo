@@ -15,6 +15,7 @@ players:
   - Classiq | classiq.io
   - NVIDIA | nvidia.com
   - BMW Group | bmwgroup.com
+signal: 3
 ---
 # What and why
 Computational fluid dynamics (CFD) is one of the main approaches used in aerospace design. Before an aircraft wing, a nacelle, or a turbine blade is ever built, its behaviour in air is predicted by numerically solving the Navier–Stokes equations on a mesh, which essentially models pressure, velocity, and temperature at millions to billions of grid points. Such simulation allows drag reduction, even few percent of which, across the fleet, is worth billions in fuel and a meaningful fraction of aviation's carbon budget. Manufacturers rely on expensive physical rigs to do these simulations, because some of them are too expensive for classical machines.

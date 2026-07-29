@@ -12,6 +12,8 @@ players:
   - D-Wave | dwavequantum.com
   - Volkswagen Group | volkswagen-group.com
   - GENCI | genci.fr
+signal: 2
+blurb: "Problem sizes that matter need error correction."
 ---
 # What and why
 Given a fleet of electric vehicles, a set of chargers and grid constraints, the challenge is to decide when and at what power each vehicle charges so you might anticipate when demand peaks, work within transformer limits, and have everyone's battery charged and ready in time. On a macro scale, this problem translates like so - given a city and a budget, decide where to build charging stations to maximise coverage and utilisation. Both problems grow combinatorially with the number of vehicles and sites and are constrained, which means they can be mapped on to QAOA on gate-based hardware, or onto a quantum annealer.

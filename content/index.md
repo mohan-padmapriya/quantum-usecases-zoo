@@ -1,9 +1,7 @@
 ---
-title: Quantum Usecase Zoo
+title: Quantum usecase zoo
 description: Can quantum computers... cure cancer?
-startHere:
-  - "[[Methodology|How I evaluate use cases]]"
-  - "[[Quantum Advantage FAQ]]"
+kicker: An analysis of quantum technology claims
 ---
 
 
