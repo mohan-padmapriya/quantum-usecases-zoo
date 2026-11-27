@@ -1,1 +1,1 @@
-Maintained by [Padmapriya Mohan](https://www.linkedin.com/in/padmapriya-mohan/) and [Hari Mohan](https://www.tifr.res.in/~quantro/people.html). If 
+Maintained by [Padmapriya Mohan](https://www.linkedin.com/in/padmapriya-mohan/) and [Hari Mohan](https://www.tifr.res.in/~quantro/people.html#:~:text=HARI%20MOHAN,time%20with%20animals.)
